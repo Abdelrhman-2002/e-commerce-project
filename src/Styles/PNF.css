@@ -1,0 +1,12 @@
+.pnf{
+    width: 80%;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* margin-top: 100px; */
+    background-image: url(../Images/peace-was-never-an-option-goose-game-pillowcase-173-x-173-45-x-45-cm.jpeg);
+    background-size: cover;
+    /* background-repeat: no-repeat; */
+    
+}
