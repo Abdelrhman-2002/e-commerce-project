@@ -1,0 +1,29 @@
+.container{
+    width: 80%;
+    height: 15vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin: auto;
+    margin-top: 100px;
+    gap: 0px;
+    
+}
+.item{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid lightgray;
+    gap: 20px;
+}
+.icon-data{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+.icon-data h3{
+    font-weight: 900;
+}
+.icon-data p{
+    color: grey;
+}
