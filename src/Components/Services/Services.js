@@ -8,7 +8,7 @@ import { RiSecurePaymentFill } from "react-icons/ri";
 const Services = () => {
   return (
     <Fragment>
-      <div class="container">
+      <div class="servicesTable">
         <div class="item">
           <TbTruckDelivery size={40} color="red" />
           <div className="icon-data">

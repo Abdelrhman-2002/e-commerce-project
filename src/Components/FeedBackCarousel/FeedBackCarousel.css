@@ -1,0 +1,35 @@
+.FeedBackCarouselContainer{
+    width: 100%;
+    height: 400px;
+    background-color:#ffedf5;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.FeedBackCarouselContainer h1{
+    transform: translateY(50px);
+}
+.feedback-carousel {
+    width: 50%;
+    height: 80%;
+  }
+ .feedback-carousel .swiper-slide {
+    text-align: center;
+    display: flex;
+    border: none;
+    justify-content: center;
+    align-items: center;
+  }
+  .userData{
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+  }
+  .cont{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }

@@ -1,0 +1,19 @@
+.singleUserContainer{
+    width: 100%;
+    height: 100vh;
+    background-color: lightblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.singleUser{
+    width: 500px;
+    min-height: 500px;
+    background-color: wheat;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}

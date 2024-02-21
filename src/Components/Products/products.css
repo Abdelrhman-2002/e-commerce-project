@@ -1,0 +1,112 @@
+.productsContainer{
+    margin-top: 50px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+}
+hr{
+    border-color: red;
+    margin-top: 15px;
+    border-radius: 2px;
+    width: 100px;
+}
+.products{
+    width: 80%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 60px;
+}
+.product{
+    margin-top: 10px;
+    width: 250px;
+    height: 400px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid lightgray;
+    position: relative;
+}
+.product a{
+    text-decoration: none;
+    color: black;
+}
+.product img{
+    height: 200px;
+    width: 200px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    margin-top: 20px;
+}
+.productData{
+    height: 200px;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+}
+.productPrice{
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.product button{
+    width: 150px;
+    height: 50px;
+    border: none;
+    font-size: 20px;
+    border-radius: 10px;
+    transition: 0.5s;
+}
+.product button:hover{
+    background-color: rgb(223, 69, 84);
+}
+.productHover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(74, 66, 66, 0.5);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 10px;
+  }
+  .productHover button{
+    transform: translateY(30px);
+  }
+  button:hover{
+    cursor: pointer;
+  }
+  .productHoverButtons button{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .productHoverButtons
+  {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transform: translateY(50px);
+  }

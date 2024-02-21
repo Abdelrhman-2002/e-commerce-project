@@ -1,9 +1,9 @@
 .active {
   color: red;
 }
-/* body{
- height: 200vh
-} */
+body{
+ /* min-height: 200vh */
+}
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap');
 *{
   margin: 0;
