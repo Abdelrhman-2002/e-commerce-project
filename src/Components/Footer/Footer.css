@@ -1,0 +1,119 @@
+.mainFooter {
+  width: 100%;
+  min-height: 400px;
+  background: #181a20;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  color: white;
+}
+.minorFooter {
+  margin-top: 0.5px;
+  width: 100%;
+  height: 100px;
+  background: #181a20;
+}
+.socialMedia {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+.contactInfo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  height: 200px;
+}
+.usefulLinks,
+.myAccount {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 10px;
+  height: 200px;
+}
+.mainFooter a {
+  color: white;
+  transition: 1s;
+}
+.mainFooter a:hover {
+  color: red;
+}
+.contactInfo img:hover {
+  cursor: pointer;
+}
+.Newsletter {
+  width: 400px;
+  height: 200px;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-direction: column;
+}
+.input-container {
+  width: 100%;
+  height: 50px;
+  border-radius: 25px;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.input-container input {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  padding-left: 20px;
+  border-radius: 25px;
+  border: none;
+  z-index: 1;
+}
+
+.image-button {
+  position: absolute;
+  right: 5px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  background-color: rgb(255, 0, 68);
+  z-index: 2;
+}
+.minorFooter{
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.methods{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+.method{
+    background-color: aliceblue;
+    width: 60px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}
+.method img{
+    width: 40px;
+    height: 40px;
+}
+.method:hover{
+    cursor: pointer;
+}

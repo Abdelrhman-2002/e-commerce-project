@@ -8,7 +8,8 @@ import add3 from "../../Images/add3.png";
 const Caros = () => {
   return (
     <div className="carouselContainer">
-      <Carousel className="carousel"
+      <Carousel
+        className="carousel"
         autoPlay={true}
         showStatus={false}
         showThumbs={false}
@@ -16,11 +17,20 @@ const Caros = () => {
         interval={3000}
         infiniteLoop={true}
         stopOnHover={true}
+        showIndicators={false}
       >
         <div className="first">
           <div className="data">
             <h1>Discover Our winter Collection</h1>
-            <button className="shp1">Shop Now</button>
+            <button className="c-button c-button--gooey">
+              {" "}
+              Show More
+              <div className="c-button__blobs">
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+            </button>
           </div>
           <div className="photo">
             <img alt="" src={add1} />
@@ -29,7 +39,17 @@ const Caros = () => {
         <div className="second">
           <div className="data">
             <h1>Discounts up to 70%</h1>
-            <button className="shp2">Shop Now</button>
+            <button class="btn" type="button">
+              <strong>Discover</strong>
+              <div id="container-stars">
+                <div id="stars"></div>
+              </div>
+
+              <div id="glow">
+                <div className="circle"></div>
+                <div className="circle"></div>
+              </div>
+            </button>
           </div>
           <div className="photo">
             <img alt="" src={add2} />
@@ -38,16 +58,15 @@ const Caros = () => {
         <div className="third">
           <div className="data">
             <h1>See our new kids Collection</h1>
-            <button className="shp3">Shop Now</button>
+            <button className="elbtn">See More</button>
           </div>
           <div className="photo">
             <img alt="" src={add3} />
           </div>
         </div>
       </Carousel>
-     </div>
+    </div>
   );
 };
 
 export default Caros;
-

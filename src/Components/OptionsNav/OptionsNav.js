@@ -30,12 +30,11 @@ const OptionsNav = () => {
   };
   return (
     <Fragment>
-      <header class={x.header}>
-        <nav className="OptionNav" class={x.OptionNav}>
-          <ul class={x.ul}>
+      <header className={x.header}>
+        <nav className={x.OptionNav}>
+          <ul className={x.ul}>
             <li
-              className="ln"
-              class={x.ln}
+              className={x.ln}
               style={{
                 display: "flex",
                 alignItems: "center",
@@ -59,8 +58,7 @@ const OptionsNav = () => {
                 {language.lang}
                 <div
                   style={{ display: languages ? "block" : "none" }}
-                  className="langs"
-                  class={x.langs}
+                  className={x.langs}
                 >
                   <ol>
                     <li onClick={() => changeLanguage(palestine, "English")}>
@@ -108,8 +106,7 @@ const OptionsNav = () => {
             </li>
             <li
               onClick={currencyMenu}
-              className="cur"
-              class={x.cur}
+              className={x.cur}
               style={{
                 display: "flex",
                 alignItems: "center",
@@ -119,8 +116,7 @@ const OptionsNav = () => {
               {currency}
               <div
                 style={{ display: currencies ? "block" : "none" }}
-                className="currencies"
-                class={x.currencies}
+                className={x.currencies}
               >
                 <ol>
                   <li onClick={() => changeCurrency("$ USD")}>$ USD</li>
@@ -147,7 +143,7 @@ const OptionsNav = () => {
               123-456-789
             </li>
           </ul>
-          <ol class={x.ol}>
+          <ol className={x.ol}>
             <li
               style={{
                 display: "flex",
@@ -184,7 +180,6 @@ const OptionsNav = () => {
           </ol>
         </nav>
       </header>
-      {/* <hr /> */}
     </Fragment>
   );
 };

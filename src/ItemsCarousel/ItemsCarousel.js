@@ -11,11 +11,13 @@ import "swiper/css/navigation";
 import {Autoplay, Navigation } from "swiper/modules";
 import "./ItemsCarousel.css";
 import "../Components/Products/products.css";
+import StarRating from "..//Components/Rating/StarRating";
 
 const ItemsCarousel = () => {
   const [data, setData] = useState([]);
   const [hoveredProductId, setHoveredProductId] = useState(null);
-
+  const [isThree, setIsThree] = useState(false);
+  const [isTwo, setIsTwo] = useState(false);
   useEffect(() => {
     axios
       .get("https://fakestoreapi.com/products")
@@ -25,6 +27,22 @@ const ItemsCarousel = () => {
       .catch((err) => {
         console.log(err);
       });
+      const handleResize = (e) => {
+            if (e.currentTarget.innerWidth < 1147) {
+              setIsThree(true);
+            } else {
+              setIsThree(false);
+            }
+            if (e.currentTarget.innerWidth < 687) {
+              setIsTwo(true);
+            } else {
+              setIsTwo(false);
+            }
+          };
+          window.addEventListener("resize", handleResize);
+          return () => {
+            window.removeEventListener("resize", handleResize);
+          };
   }, []);
 
   const handleMouseEnter = (productId) => {
@@ -46,7 +64,8 @@ const ItemsCarousel = () => {
       <div className="ItemsCarouselContainer">
         <Swiper
           loop={true}
-          slidesPerView={5}
+          slidesPerView={isThree&&!isTwo ? 3 : (isTwo ? 1 : 5)}
+
           centeredSlides={true}
           spaceBetween={30}
           infinite={true}
@@ -93,8 +112,13 @@ const ItemsCarousel = () => {
                     </p>
                   </div>
 
-                  <p>{product.rating.rate}</p>
-                </div>
+                  <div
+                  style={{ display: "flex", gap: "5px" }}
+                  className="productRating"
+                >
+                  <StarRating rating={Math.round(product.rating.rate)} />
+                  <p>({product.rating.count})</p>
+                </div>                </div>
                 {hoveredProductId === product.id && (
                   <div className="productHover">
                     <div className="productHoverButtons">
@@ -108,9 +132,9 @@ const ItemsCarousel = () => {
                         <FaRegHeart />{" "}
                       </button>
                     </div>
-                    <button>
-                      <Link to={`${product.id}`}>ShowMore</Link>
-                    </button>
+                    <button className="showbtn">
+                    <span><Link to={`${product.id}`}>ShowMore</Link></span>
+                  </button>
                   </div>
                 )}
               </SwiperSlide>

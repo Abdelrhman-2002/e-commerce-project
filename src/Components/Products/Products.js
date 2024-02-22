@@ -1,22 +1,22 @@
 import React, { Fragment, useEffect, useState } from "react";
 import "./products.css";
 import axios from "axios";
-import { Link } from "react-router-dom";
 import { IoShuffle } from "react-icons/io5";
 import { FaSearchPlus } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
+import StarRating from "../Rating/StarRating.js";
+import { useDispatch } from "react-redux";
+import { cartSlice } from '../Redux/CartSlice.js'
 
 const Products = () => {
   const [data, setData] = useState([]);
   const [hoveredProductId, setHoveredProductId] = useState(null);
-
+  const dispatch=useDispatch();
   useEffect(() => {
     axios
       .get("https://fakestoreapi.com/products")
-      // .get("https://mock.shop/api?query=%7B%20products(first%3A%2020)%20%7B%20edges%20%7B%20node%20%7B%20id%20title%20description%20featuredImage%20%7B%20id%20url%20%7D%20variants(first%3A%203)%20%7B%20edges%20%7B%20node%20%7B%20price%20%7B%20amount%20currencyCode%20%7D%20%7D%20%7D%20%7D%20%7D%20%7D%20%7D%7D")
       .then((res) => {
         setData(res.data);
-        // console.log(res.data.data.products.edges);
       })
       .catch((err) => {
         console.log(err);
@@ -68,25 +68,28 @@ const Products = () => {
                     </del>
                   </p>
                 </div>
-
-                <p>{product.rating.rate}</p>
+                <div
+                  style={{ display: "flex", gap: "5px" }}
+                  className="productRating"
+                >
+                  <StarRating rating={Math.round(product.rating.rate)} />
+                  <p>({product.rating.count})</p>
+                </div>
               </div>
               {hoveredProductId === product.id && (
                 <div className="productHover">
                   <div className="productHoverButtons">
                     <button>
-                      <IoShuffle />{" "}
+                      <IoShuffle />
+                    </button>
+                    <button onClick={() => { window.location = `/home/${product.id}` }}>
+                      <FaSearchPlus />
                     </button>
                     <button>
-                      <FaSearchPlus />{" "}
-                    </button>
-                    <button>
-                      <FaRegHeart />{" "}
+                      <FaRegHeart />
                     </button>
                   </div>
-                  <button>
-                    <Link to={`${product.id}`}>ShowMore</Link>
-                  </button>
+                  <button className="showbtn" onClick={()=>dispatch(cartSlice.actions.addToCart(product))}>Add To Cart</button>
                 </div>
               )}
             </div>

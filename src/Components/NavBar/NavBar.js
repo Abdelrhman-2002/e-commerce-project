@@ -1,13 +1,19 @@
-import React, { Fragment, useState, useEffect } from 'react';
-import y from './NavBar.module.css';
-import storeLogo from '../../Images/store.png';
+import React, { Fragment, useState, useEffect } from "react";
+import y from "./NavBar.module.css";
+import storeLogo from "../../Images/store.png";
 import { IoMdSearch } from "react-icons/io";
 import { TiShoppingCart } from "react-icons/ti";
-import { NavLink } from 'react-router-dom';
-// import './lol.css'
-const OptionsNav = () => {
+import { Link, NavLink } from "react-router-dom";
+import { RiArrowDropDownLine } from "react-icons/ri";
+import { IoIosMenu } from "react-icons/io";
+import { IoClose } from "react-icons/io5";
+const NavBar = () => {
   const [isFixed, setIsFixed] = useState(false);
-
+  const [menuButton, setMenuButton] = useState(false);
+  const [bigMenu, setBigMenu] = useState(false);
+  const togglBigMenu = () => {
+    setBigMenu(!bigMenu);
+  };
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 120) {
@@ -17,32 +23,130 @@ const OptionsNav = () => {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    const handleResize = (e) => {
+      if (e.currentTarget.innerWidth < 612) {
+        setMenuButton(true);
+      } else {
+        setMenuButton(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
+  const DropdownMenu = () => (
+    <div className={y.dropdownMenu}>
+      <ul>
+        <li>
+          <NavLink to={"/home"}>Home</NavLink>
+        </li>
+        <li>
+          <NavLink to={"/about"}>About Us</NavLink>
+        </li>
+        <li>
+          <NavLink to={"/contact"}>Contact Us</NavLink>
+        </li>
+        <li>
+          <NavLink to={"/404"}>404 Not Found</NavLink>
+        </li>
+      </ul>
+    </div>
+  );
+  const [isDropdownVisible, setDropdownVisible] = useState(false);
+
+  const handleMouseEnter = () => {
+    setDropdownVisible(true);
+  };
+
+  const handleMouseLeave = () => {
+    setDropdownVisible(false);
+  };
   return (
     <Fragment>
-      <nav className='mainNav' class={y.mainNav} style={{position:isFixed?'fixed':'static'}}>
-        <div class={y.logo}>
-          <img src={storeLogo} alt='' />
+      <nav
+        className={y.mainNav}
+        style={{ position: isFixed ? "fixed" : "static" }}
+      >
+        <div className={y.logo}>
+          <img src={storeLogo} alt="" />
           <p>Shoppa</p>
         </div>
-        <ul>
-          <li><NavLink to={'/home'}>Home</NavLink></li>
-          <li><NavLink to={'/about'}>About Us</NavLink></li>
-          <li><NavLink to={'/contact'}>Contact Us</NavLink></li>
+        <ul style={{ display: !menuButton ? "flex" : "none" }}>
+          <li>
+            <NavLink to={"/home"}>Home</NavLink>
+          </li>
+          <li
+            style={{ padding: "15px", position: "relative", height: "60px" }}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          >
+            <div className="menu">
+              <li>
+                <p>
+                  Pages <RiArrowDropDownLine size={20} />
+                </p>{" "}
+              </li>
+              {isDropdownVisible && <DropdownMenu />}
+            </div>
+          </li>
+          <li>
+            <NavLink to={"/about"}>About Us</NavLink>
+          </li>
+          <li>
+            <NavLink to={"/contact"}>Contact Us</NavLink>
+          </li>
         </ul>
         <ol>
-          <li><IoMdSearch size={24} /></li>
-          <li className={y.cart}><TiShoppingCart size={24} /><div className={y.itemNum}><p>10</p></div></li>
+          <li>
+            <IoMdSearch size={24} />
+          </li>
+          <li
+            className={y.cart}
+            onClick={() => {
+              window.location = "/cart";
+            }}
+          >
+            <TiShoppingCart size={24} />
+            <div className={y.itemNum}>
+              <p>10</p>
+            </div>
+          </li>
+          <li
+            onClick={togglBigMenu}
+            style={{ display: menuButton ? "flex" : "none" }}
+            className="bigMenuButton"
+          >
+            {!bigMenu ? <IoIosMenu size={24} /> : <IoClose size={24} />}
+            <div
+              style={{
+                display: bigMenu ? "flex" : "none",
+                top: !isFixed ? "110px" : "50px"
+              }}
+              className={y.elbigMenu}
+            >
+              <ol>
+                <li>
+                  <NavLink to={"/home"}>Home</NavLink>
+                </li>
+                <li>
+                  <NavLink to={"/about"}>About Us</NavLink>
+                </li>
+                <li>
+                  <NavLink to={"/contact"}>Contact Us</NavLink>
+                </li>
+              </ol>
+            </div>
+          </li>
         </ol>
       </nav>
     </Fragment>
   );
 };
 
-export default OptionsNav;
+export default NavBar;
