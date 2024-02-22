@@ -115,7 +115,7 @@ a{
   }
  .elbigMenu{
     width: 100%;
-    height: 100px;
+    min-height: 100px;
     position: absolute;
 
     left: 0;
@@ -134,7 +134,4 @@ a{
     flex-direction: column;
     justify-content: space-around;
     align-items: flex-start;
- }
- .elbigMenu ol li {
-    /* background-color: red; */
  }

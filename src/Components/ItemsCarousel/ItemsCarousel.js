@@ -8,12 +8,14 @@ import { FaRegHeart } from "react-icons/fa";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import {Autoplay, Navigation } from "swiper/modules";
+import { Autoplay, Navigation } from "swiper/modules";
 import "./ItemsCarousel.css";
-import "../Components/Products/products.css";
-import StarRating from "..//Components/Rating/StarRating";
-
+import "../../Components/Products/products.css";
+import StarRating from "../Rating/StarRating";
+import { useDispatch } from "react-redux";
+import { cartSlice } from "../Redux/CartSlice";
 const ItemsCarousel = () => {
+  const dispatch = useDispatch();
   const [data, setData] = useState([]);
   const [hoveredProductId, setHoveredProductId] = useState(null);
   const [isThree, setIsThree] = useState(false);
@@ -27,22 +29,22 @@ const ItemsCarousel = () => {
       .catch((err) => {
         console.log(err);
       });
-      const handleResize = (e) => {
-            if (e.currentTarget.innerWidth < 1147) {
-              setIsThree(true);
-            } else {
-              setIsThree(false);
-            }
-            if (e.currentTarget.innerWidth < 687) {
-              setIsTwo(true);
-            } else {
-              setIsTwo(false);
-            }
-          };
-          window.addEventListener("resize", handleResize);
-          return () => {
-            window.removeEventListener("resize", handleResize);
-          };
+    const handleResize = (e) => {
+      if (e.currentTarget.innerWidth < 1147) {
+        setIsThree(true);
+      } else {
+        setIsThree(false);
+      }
+      if (e.currentTarget.innerWidth < 687) {
+        setIsTwo(true);
+      } else {
+        setIsTwo(false);
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   const handleMouseEnter = (productId) => {
@@ -56,26 +58,22 @@ const ItemsCarousel = () => {
   return (
     <Fragment>
       <div className="ItemsCarouselHeader">
-        <h1>
-          Featured Products
-        </h1>
+        <h1>Featured Products</h1>
         <hr />
       </div>
       <div className="ItemsCarouselContainer">
         <Swiper
           loop={true}
-          slidesPerView={isThree&&!isTwo ? 3 : (isTwo ? 1 : 5)}
-
+          slidesPerView={isThree && !isTwo ? 3 : isTwo ? 1 : 5}
           centeredSlides={true}
           spaceBetween={30}
           infinite={true}
           autoplay={{
-          delay: 2500,
-          disableOnInteraction: false,
-        }}
-        navigation={true}
-        modules={[Autoplay, Navigation]}
-          
+            delay: 2500,
+            disableOnInteraction: false
+          }}
+          navigation={true}
+          modules={[Autoplay, Navigation]}
           className="mySwiper"
         >
           {data
@@ -111,14 +109,14 @@ const ItemsCarousel = () => {
                       </del>
                     </p>
                   </div>
-
                   <div
-                  style={{ display: "flex", gap: "5px" }}
-                  className="productRating"
-                >
-                  <StarRating rating={Math.round(product.rating.rate)} />
-                  <p>({product.rating.count})</p>
-                </div>                </div>
+                    style={{ display: "flex", gap: "5px" }}
+                    className="productRating"
+                  >
+                    <StarRating rating={Math.round(product.rating.rate)} />
+                    <p>({product.rating.count})</p>
+                  </div>{" "}
+                </div>
                 {hoveredProductId === product.id && (
                   <div className="productHover">
                     <div className="productHoverButtons">
@@ -126,14 +124,29 @@ const ItemsCarousel = () => {
                         <IoShuffle />{" "}
                       </button>
                       <button>
-                        <FaSearchPlus />{" "}
+                        <Link
+                          style={{
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center"
+                          }}
+                          to={"/cart"}
+                        >
+                          {" "}
+                          <FaSearchPlus />
+                        </Link>
                       </button>
                       <button>
                         <FaRegHeart />{" "}
                       </button>
                     </div>
-                    <button className="showbtn">
-                    <span><Link to={`${product.id}`}>ShowMore</Link></span>
+                    <button
+                    className="showbtn"
+                    onClick={() =>
+                      dispatch(cartSlice.actions.addToCart(product))
+                    }
+                  >
+                    Add To Cart
                   </button>
                   </div>
                 )}

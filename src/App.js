@@ -10,6 +10,7 @@ import Product from './Components/Product/Product';
 import { Footer } from './Components/Footer/Footer';
 import ScrollToTop from './Components/ScrollToTop/ScrollToTop';
 import Cart from './Components/Redux/Cart';
+import Login from './Routes/Login';
 function App() {
   return (
     <div className="App">
@@ -22,6 +23,7 @@ function App() {
           <Route path='/about' element={<AboutUs />}/>
           <Route path='/contact' element={<ContactUs />}/>
           <Route path='/cart' element={<Cart/>}/>
+          <Route path='/login' element={<Login/>}/>
         <Route path='*' element={<PNF />}/>
         </Routes>
         <Footer/>

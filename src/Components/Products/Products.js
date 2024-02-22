@@ -6,12 +6,13 @@ import { FaSearchPlus } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
 import StarRating from "../Rating/StarRating.js";
 import { useDispatch } from "react-redux";
-import { cartSlice } from '../Redux/CartSlice.js'
+import { cartSlice } from "../Redux/CartSlice.js";
+import { Link } from "react-router-dom";
 
 const Products = () => {
   const [data, setData] = useState([]);
   const [hoveredProductId, setHoveredProductId] = useState(null);
-  const dispatch=useDispatch();
+  const dispatch = useDispatch();
   useEffect(() => {
     axios
       .get("https://fakestoreapi.com/products")
@@ -82,14 +83,31 @@ const Products = () => {
                     <button>
                       <IoShuffle />
                     </button>
-                    <button onClick={() => { window.location = `/home/${product.id}` }}>
-                      <FaSearchPlus />
+                    <button>
+                      <Link
+                        style={{
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center"
+                        }}
+                        to={"/cart"}
+                      >
+                        {" "}
+                        <FaSearchPlus />
+                      </Link>
                     </button>
                     <button>
                       <FaRegHeart />
                     </button>
                   </div>
-                  <button className="showbtn" onClick={()=>dispatch(cartSlice.actions.addToCart(product))}>Add To Cart</button>
+                  <button
+                    className="showbtn"
+                    onClick={() =>
+                      dispatch(cartSlice.actions.addToCart(product))
+                    }
+                  >
+                    Add To Cart
+                  </button>
                 </div>
               )}
             </div>

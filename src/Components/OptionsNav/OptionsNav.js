@@ -8,6 +8,7 @@ import { RiArrowDropDownLine } from "react-icons/ri";
 import { RiArrowDropUpLine } from "react-icons/ri";
 import palestine from "../../Images/palestine.png";
 import Arabic from "../../Images/Arabic.png";
+import { Link } from "react-router-dom";
 const OptionsNav = () => {
   const [currencies, setCurrencies] = useState(false);
   const [languages, setLanguages] = useState(false);
@@ -174,8 +175,8 @@ const OptionsNav = () => {
                 gap: "5px"
               }}
             >
-              <FaUserAlt size={15} />
-              Login
+              <Link to={'/login'}><FaUserAlt size={15} />
+              Login</Link>
             </li>
           </ol>
         </nav>

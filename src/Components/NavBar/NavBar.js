@@ -3,15 +3,18 @@ import y from "./NavBar.module.css";
 import storeLogo from "../../Images/store.png";
 import { IoMdSearch } from "react-icons/io";
 import { TiShoppingCart } from "react-icons/ti";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { IoIosMenu } from "react-icons/io";
 import { IoClose } from "react-icons/io5";
+import { useSelector } from "react-redux";
+
 const NavBar = () => {
   const [isFixed, setIsFixed] = useState(false);
   const [menuButton, setMenuButton] = useState(false);
   const [bigMenu, setBigMenu] = useState(false);
-  const togglBigMenu = () => {
+  const numOfItems = useSelector((state) => state.cart.cart.length);
+  const toggleBigMenu = () => {
     setBigMenu(!bigMenu);
   };
   useEffect(() => {
@@ -54,6 +57,12 @@ const NavBar = () => {
         </li>
         <li>
           <NavLink to={"/404"}>404 Not Found</NavLink>
+        </li>
+        <li>
+          <NavLink to={"/login"}>Login</NavLink>
+        </li>
+        <li>
+          <NavLink to={"/cart"}>cart</NavLink>
         </li>
       </ul>
     </div>
@@ -106,19 +115,24 @@ const NavBar = () => {
           <li>
             <IoMdSearch size={24} />
           </li>
-          <li
-            className={y.cart}
-            onClick={() => {
-              window.location = "/cart";
-            }}
-          >
-            <TiShoppingCart size={24} />
+          <li className={y.cart}>
+            <NavLink
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center"
+              }}
+              to={"/cart"}
+            >
+              <TiShoppingCart size={24} />
+            </NavLink>
+
             <div className={y.itemNum}>
-              <p>10</p>
+              <p>{numOfItems}</p>
             </div>
           </li>
           <li
-            onClick={togglBigMenu}
+            onClick={toggleBigMenu}
             style={{ display: menuButton ? "flex" : "none" }}
             className="bigMenuButton"
           >
@@ -139,6 +153,15 @@ const NavBar = () => {
                 </li>
                 <li>
                   <NavLink to={"/contact"}>Contact Us</NavLink>
+                </li>
+                <li>
+                  <NavLink to={"/login"}>Login</NavLink>
+                </li>
+                <li>
+                  <NavLink to={"/cart"}>cart</NavLink>
+                </li>
+                <li>
+                  <NavLink to={"/404"}>404 Not Found</NavLink>
                 </li>
               </ol>
             </div>
