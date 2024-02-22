@@ -90,7 +90,7 @@ const Products = () => {
                           justifyContent: "center",
                           alignItems: "center"
                         }}
-                        to={"/cart"}
+                        to={`${product.id}`}
                       >
                         {" "}
                         <FaSearchPlus />

@@ -21,8 +21,7 @@ function App() {
     if (location.pathname === '/home') {
       const timer = setTimeout(() => {
         setShowLoader(false);
-      }, 3000);
-
+      }, 5000);
       return () => clearTimeout(timer);
     } else {
       setShowLoader(false);

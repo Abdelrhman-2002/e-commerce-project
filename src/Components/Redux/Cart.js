@@ -1,11 +1,18 @@
 import React from "react";
 import "./Cart.css";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { deleteFromCart } from "./CartSlice";
 import ItemsCarousel from "../ItemsCarousel/ItemsCarousel";
 import { RiDeleteBin6Line } from "react-icons/ri";
+
 const Cart = () => {
+  const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart.cart);
   const totalPrice = cart.reduce((acc, item) => acc + item.price, 0);
+
+  const handleDelete = (id) => {
+    dispatch(deleteFromCart(id));
+  };
 
   return (
     <>
@@ -25,10 +32,10 @@ const Cart = () => {
                   <p>{element.title}</p>
                 </div>
                 <div className="zh2t">
-                <button className="deleteItem">
-                <RiDeleteBin6Line size={20}/>
-                </button>
-                <p>${element.price}</p>
+                  <button className="deleteItem" onClick={() => handleDelete(element.id)}>
+                    <RiDeleteBin6Line size={20} />
+                  </button>
+                  <p>${element.price}</p>
                 </div>
               </div>
             ))}
@@ -52,7 +59,6 @@ const Cart = () => {
                 ></path>
               </svg>
             </button>
-
             <p>${totalPrice}</p>
           </div>
         </div>
