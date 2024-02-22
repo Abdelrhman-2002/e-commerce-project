@@ -10,7 +10,7 @@
     box-shadow: 1px 1px 3px lightgray;
     background-color: white;
 }
-.logo {
+.logo a {
     height: 50px;
     display: flex;
     justify-content: center;

@@ -3,7 +3,7 @@ import y from "./NavBar.module.css";
 import storeLogo from "../../Images/store.png";
 import { IoMdSearch } from "react-icons/io";
 import { TiShoppingCart } from "react-icons/ti";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { IoIosMenu } from "react-icons/io";
 import { IoClose } from "react-icons/io5";
@@ -83,8 +83,10 @@ const NavBar = () => {
         style={{ position: isFixed ? "fixed" : "static" }}
       >
         <div className={y.logo}>
-          <img src={storeLogo} alt="" />
-          <p>Shoppa</p>
+          <Link to={'/home'}>
+            <img src={storeLogo} alt="" />
+            <p>Shoppa</p>
+          </Link>
         </div>
         <ul style={{ display: !menuButton ? "flex" : "none" }}>
           <li>
