@@ -130,9 +130,8 @@ const ItemsCarousel = () => {
                             justifyContent: "center",
                             alignItems: "center"
                           }}
-                          to={"/cart"}
+                          to={`/home/${product.id}`}
                         >
-                          {" "}
                           <FaSearchPlus />
                         </Link>
                       </button>
@@ -141,13 +140,13 @@ const ItemsCarousel = () => {
                       </button>
                     </div>
                     <button
-                    className="showbtn"
-                    onClick={() =>
-                      dispatch(cartSlice.actions.addToCart(product))
-                    }
-                  >
-                    Add To Cart
-                  </button>
+                      className="showbtn"
+                      onClick={() =>
+                        dispatch(cartSlice.actions.addToCart(product))
+                      }
+                    >
+                      Add To Cart
+                    </button>
                   </div>
                 )}
               </SwiperSlide>
